@@ -1,0 +1,134 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+#map {
+  width: 600px;
+  height: 400px;
+  position: absolute;
+  z-index: 8;
+}
+
+#logo {
+  position: absolute;
+  z-index: 9;
+  right: 0px;
+  top: 8px;
+}
+
+#add-pin-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.add-pin-button--active {
+  background-color: rgb(141, 191, 204);
+}
+
+/*/////////////////////////////////*/
+.mdl-dialog-my-content{
+  padding: 70px 0px 0px;
+  position: relative;
+  //overflow: auto;
+  /*padding: 5px;
+  overflow: auto;
+  display: block;
+
+  align-self: center;*/
+
+}
+
+.h4-text-size{
+  font-family: 'Exo';
+  color: #ffffff;
+  font-size: 180% ;
+  text-align: center;
+  font-weight: 200%;
+  padding: 15px 0px 0px;
+}
+
+.b{
+  position: absolute;
+    font-weight: bold;
+    font-size: large ;
+    right: -10px;
+    top: 0px;
+    color: #ffffff;
+}
+
+
+
+.fixed-title{
+  padding: 0px 0px 20px;
+
+
+  overflow: hidden;
+  position: fixed;
+  display: block;
+  width: 80%;
+  background-color: #383838;
+  z-index: 10;
+
+}
+
+
+/*this is for the add of the description of the icon*/
+.my-fancy-container {
+  font-family: 'Exo';
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+}
+
+.my-text {
+  display: block;
+}
+
+.button{
+  border: none;
+  right: 50%;
+  
+}
+
+
+.dialog-size-view {/*this is the size of the dialog of adding new marker*/
+ padding: 0px 0px 0px;
+
+ width: 80%;
+ height: 80%;
+ background-color: rgb(255, 255, 255, 0.9);/*0.9 is the Transparency*/
+ overflow: auto;
+  z-index: 5;
+}
+
+
+
+body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }
+
+
+@media only screen and (min-width: 640px) {
+  .my-dialog {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .my-dialog {
+    width: 30%;
+  }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .my-dialog {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .my-dialog {
+    width: 30%;
+  }
+}

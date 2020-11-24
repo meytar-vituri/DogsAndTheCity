@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TAU Mobile Map Starter</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link href='https://fonts.googleapis.com/css?family=Annie Use Your Telescope' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet'>
+
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  
+  <div id= 'logo'>
+   <img src= "logo.png" width="95" height="95">
+  </div>
+  
+  <div id='map'></div>
+
+  
+
+  <button id="add-pin-button" onclick="addPin()" class="mdc-fab" aria-label="Favorite">
+    <div class="mdc-fab__ripple"></div>
+    <span class="mdc-fab__icon material-icons">add</span>
+  </button>
+
+  <dialog class="mdl-dialog dialog-size-view">
+
+   <div id= 'dialog-top' class ='fixed-title'>
+     <span>
+        <button type="button" class="mdl-button close b">&#10006</button>
+      
+         <h4 class="mdl-dialog__title h4-text-size">Choose new mark</h4></span>
+      </div>
+      
+      <div class="mdl-dialog-my-content ">
+
+      <div class = "mdl-grid " id="button-grid">
+
+       </div>
+
+
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>

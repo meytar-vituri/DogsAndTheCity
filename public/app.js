@@ -175,7 +175,7 @@ const buttonGrid = document.getElementById("button-grid");
 var marks = ["Veterinarian", "Cats area", "Dog friendly Restaurant", "Dogs Park", "Add new negative mark", "Add new positive mark",
               "Construction site", "Dog's beach", "Garbage area", "Poisonous area"];
 var dict = {};
-var text_dict = {"Veterinarian" : "Veterinarian.png","Cats area" :"Cats_area.png", "Dog friendly Restaurant":"Dog_friendly_Restaurant.png" ,
+var text_dict = {"Veterinarian" : "Buttons/Veterinarian_Button.png","Cats area" :"Cats_area.png", "Dog friendly Restaurant":"Dog_friendly_Restaurant.png" ,
                   "Dogs Park" : "Dogs_Park.png", "Add new negative mark":"Add_new_negative_mark.png", "Add new positive mark" :"Add_new_positive_mark.png",
                   "Construction site":"Construction_site.png", "Dog's beach": "Dog's_beach.png", "Garbage area" :"Garbage_dump_area.png",
                   "Poisonous area":"Poisonous_area.png"};

@@ -145,9 +145,11 @@ function deactivateAddPinButton() {
 fetch('/all_points', { method: 'GET' })
   .then(result => result.json())
   .then(data => {
+	console.log(Object.keys(data));
     Object.keys(data).forEach(
       id => {
         const pointData = JSON.parse(data[id]);
+	console.log(pointData);
         //L.marker(pointData.coords).addTo(map);
         //L.marker(pointData.coords, {Icon : (pointData.type).toString()}).addTo(map);
 

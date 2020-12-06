@@ -120,11 +120,8 @@ function deactivateAddPinButton() {
 }
 
 // Load map:
-  localStorage.setItem(349387598, JSON.stringify({"type":"Dogs Park" ,"description":"גינת כלבים מדהימה","coords":{"lat":"32.090625","lng":"34.776295"}}));
-  localStorage.setItem(349387597, JSON.stringify({"type":"Dogs Park" ,"description":"גינת כלבים עובדיה הנביא","coords":{"lat":"32.093861 ","lng":"34.777291"}}));
-  localStorage.setItem(349387596, JSON.stringify({"type":"Dogs Park" ,"description":"גינת כלבים עובדיה בילטמור","coords":{"lat":"32.088810","lng":"34.787687"}}));
-  localStorage.setItem(349387595, JSON.stringify({"type":"Dogs Park" ,"description":"גינת כלבים עובדיה אוסישקין","coords":{"lat":"32.095292","lng":"34.781428"}}));
-  localStorage.setItem(349387594, JSON.stringify({"type":"Veterinarian" ,"description":"טלי אברהם, וטרינרית","coords":{"lat":"32.090631","lng":"34.776009"}}));
+
+  
 fetch('/all_points', { method: 'GET' })
   .then(result => result.json())
   .then(data => {
@@ -136,7 +133,7 @@ fetch('/all_points', { method: 'GET' })
         //L.marker(pointData.coords).addTo(map);
         //L.marker(pointData.coords, {Icon : (pointData.type).toString()}).addTo(map);
 
-        L.marker(pointData.coords , {icon :dict[pointData.type]} ).addTo(map).bindPopup(pointData.type.concat(pointData.description));
+        L.marker(pointData.coords , {icon :dict[pointData.type]} ).addTo(map).bindPopup("<b>" + pointData.type + "</b><br>" + pointData.description);
 
       }
     );
@@ -166,7 +163,7 @@ var markers_dict = {"Veterinarian" : "markers/Veterinarian.png","Cats area" :"ma
                   "Poisonous area":"markers/Poisonous_area.png"};
 
 var dialog_dict = {"Veterinarian" : "Buttons/Veterinarian_Button.png","Cats area" :"Buttons/Cats_area_Button.png", "Dog friendly Restaurant":"Buttons/Dog_friendly_Restaurant_Button.png" ,
-                  "Dogs Park" : "Buttons/Dogs_Park_Button.png", "Add new negative mark":"Add_new_negative_mark_Button.png", "Add new positive mark" :"Buttons/Add_new_positive_mark_Button.png",
+                  "Dogs Park" : "Buttons/Dogs_Park_Button.png", "Add new negative mark":"Buttons/Add_new_negative_mark_Button.png", "Add new positive mark" :"Buttons/Add_new_positive_mark_Button.png",
                   "Construction site":"Buttons/Construction_site_Button.png", "Dog's beach": "Buttons/Dog's_beach_Button.png", "Garbage area" :"Buttons/Garbage_dump_area_Button.png",
                   "Poisonous area":"Buttons/Poisonous_area_Button.png"};
 

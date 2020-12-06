@@ -104,28 +104,6 @@ function setMark(element) {
 };
 
 
-/*
-// Dialog save
-dialog.getElementsByClassName('button').addEventListener('click', function () {
-  dialog.close();
-
-  if (currentPinCoords) {
-    L.marker(currentPinCoords).addTo(map);
-
-    const type = document.querySelector('#Dogs-Garden').value;
-    /*
-    const description = document.querySelector('#description').value;
-   
-    const id = getRandomId();
-    const data = { type, description, coords: currentPinCoords };
-
-    fetch(`/add_point?id=${id}&data=${JSON.stringify(data)}`, {
-      method: 'GET'
-    });
-  }
-  deactivateAddPinButton();
-}); */
-
 // Dialog close (without saving)
 
 dialog.querySelector('.close').addEventListener('click', function () {
@@ -142,6 +120,11 @@ function deactivateAddPinButton() {
 }
 
 // Load map:
+  localStorage.setItem(349387598, JSON.stringify({"type":"Dogs Park" ,"description":"גינת כלבים מדהימה","coords":{"lat":"32.090625","lng":"34.776295"}}));
+  localStorage.setItem(349387597, JSON.stringify({"type":"Dogs Park" ,"description":"גינת כלבים עובדיה הנביא","coords":{"lat":"32.093861 ","lng":"34.777291"}}));
+  localStorage.setItem(349387596, JSON.stringify({"type":"Dogs Park" ,"description":"גינת כלבים עובדיה בילטמור","coords":{"lat":"32.088810","lng":"34.787687"}}));
+  localStorage.setItem(349387595, JSON.stringify({"type":"Dogs Park" ,"description":"גינת כלבים עובדיה אוסישקין","coords":{"lat":"32.095292","lng":"34.781428"}}));
+  localStorage.setItem(349387594, JSON.stringify({"type":"Veterinarian" ,"description":"טלי אברהם, וטרינרית","coords":{"lat":"32.090631","lng":"34.776009"}}));
 fetch('/all_points', { method: 'GET' })
   .then(result => result.json())
   .then(data => {
@@ -153,7 +136,7 @@ fetch('/all_points', { method: 'GET' })
         //L.marker(pointData.coords).addTo(map);
         //L.marker(pointData.coords, {Icon : (pointData.type).toString()}).addTo(map);
 
-        L.marker(pointData.coords , {icon :dict[pointData.type]} ).addTo(map).bindPopup(pointData.type);
+        L.marker(pointData.coords , {icon :dict[pointData.type]} ).addTo(map).bindPopup(pointData.type.concat(pointData.description));
 
       }
     );
@@ -177,19 +160,20 @@ const buttonGrid = document.getElementById("button-grid");
 var marks = ["Veterinarian", "Cats area", "Dog friendly Restaurant", "Dogs Park", "Add new negative mark", "Add new positive mark",
               "Construction site", "Dog's beach", "Garbage area", "Poisonous area"];
 var dict = {};
-var text_dict = {"Veterinarian" : "Buttons/Veterinarian_Button.png","Cats area" :"Cats_area.png", "Dog friendly Restaurant":"Dog_friendly_Restaurant.png" ,
-                  "Dogs Park" : "Dogs_Park.png", "Add new negative mark":"Add_new_negative_mark.png", "Add new positive mark" :"Add_new_positive_mark.png",
-                  "Construction site":"Construction_site.png", "Dog's beach": "Dog's_beach.png", "Garbage area" :"Garbage_dump_area.png",
-                  "Poisonous area":"Poisonous_area.png"};
+var markers_dict = {"Veterinarian" : "markers/Veterinarian.png","Cats area" :"markers/Cats_area.png", "Dog friendly Restaurant":"markers/Dog_friendly_Restaurant.png" ,
+                  "Dogs Park" : "markers/Dogs_Park.png", "Add new negative mark":"markers/Add_new_negative_mark.png", "Add new positive mark" :"markers/Add_new_positive_mark.png",
+                  "Construction site":"markers/Construction_site.png", "Dog's beach": "markers/Dog's_beach.png", "Garbage area" :"markers/Garbage_dump_area.png",
+                  "Poisonous area":"markers/Poisonous_area.png"};
+
+var dialog_dict = {"Veterinarian" : "Buttons/Veterinarian_Button.png","Cats area" :"Buttons/Cats_area_Button.png", "Dog friendly Restaurant":"Buttons/Dog_friendly_Restaurant_Button.png" ,
+                  "Dogs Park" : "Buttons/Dogs_Park_Button.png", "Add new negative mark":"Add_new_negative_mark_Button.png", "Add new positive mark" :"Buttons/Add_new_positive_mark_Button.png",
+                  "Construction site":"Buttons/Construction_site_Button.png", "Dog's beach": "Buttons/Dog's_beach_Button.png", "Garbage area" :"Buttons/Garbage_dump_area_Button.png",
+                  "Poisonous area":"Buttons/Poisonous_area_Button.png"};
 
 var count = 0;
 for(element of marks){
-  var con = text_dict[element];
-
   dict[element] = L.icon({
-
-    iconUrl: con,
-
+    iconUrl: markers_dict[element],
     iconSize:     [30, 44], // size of the icon
     iconAnchor:   [15, 44], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -38] // point from which the popup should open relative to the iconAnchor
@@ -218,10 +202,10 @@ for(element of marks){
   but.appendChild(div);
   //span1.className = "mdl-button mdl-js-button mdl-button--fab mdl-button--colored";
 
-  var file = text_dict[element];
+  var file = dialog_dict[element];
   img.setAttribute("src", file);
-  img.setAttribute("width", "40");
-  img.setAttribute("height", "60");
+  img.setAttribute("width", "50");
+  img.setAttribute("height", "50");
   
  elements.push(but);
 

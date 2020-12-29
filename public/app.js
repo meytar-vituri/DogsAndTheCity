@@ -2,7 +2,14 @@ const map = L.map('map').fitWorld();
 
 //let divMap = {};
 const USE_OPEN_STREET_MAP = true;
+const temporaryMarkerTypes = ["Cats area", "Dogs Park", "Garbage area", "Poisonous area"]; //types for temporary markers
+const dayInMilliSeconds = (24*60*60*1000); //24 hours in millisenconds. used to remove dynamicIconcs
+function removePinFromDB(id){
+      fetch(`/delete_point?id=${id}&data=${JSON.stringify(id)}`, {
+      method: 'GET'
+    });
 
+}
 if (USE_OPEN_STREET_MAP) {
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -91,10 +98,17 @@ function setMark(element) {
 
     //we will add description later
     //const description = document.querySelector('#description').value;
-    const description = "";
+    var description = "";
     const id = getRandomId();
-    const data = { type, description, coords: currentPinCoords };
+    const createdTime = (new Date).getTime();
+        if (temporaryMarkerTypes.includes(type)){
+          var expirationTime = new Date(createdTime+dayInMilliSeconds-(new Date).getTimezoneOffset()*60*1000);
+          description = description + "\n expires on "+expirationTime.toUTCString().slice(0,-7);
+    }
+    const data = { type, description, coords: currentPinCoords, createdTime };
 
+    
+    console.log(description);
     fetch(`/add_point?id=${id}&data=${JSON.stringify(data)}`, {
       method: 'GET'
     });
@@ -126,10 +140,18 @@ fetch('/all_points', { method: 'GET' })
   .then(result => result.json())
   .then(data => {
 	console.log(Object.keys(data));
+    currentTime = new Date;
     Object.keys(data).forEach(
       id => {
         const pointData = JSON.parse(data[id]);
-	console.log(pointData);
+        if (temporaryMarkerTypes.includes(pointData.type) ){
+          const elpasedTime = (currentTime.getTime() - pointData.createdTime); /*  time in milliseconds*/
+          if (elpasedTime > dayInMilliSeconds){ //delete point after a day
+            removePinFromDB(id);
+            return;
+          }
+        }
+	      console.log(pointData);
         //L.marker(pointData.coords).addTo(map);
         //L.marker(pointData.coords, {Icon : (pointData.type).toString()}).addTo(map);
 
@@ -246,6 +268,15 @@ pos_m.onclick = function() {setMark('Add new positive mark')};
 
 var Construction = elements[6];
 Construction.onclick = function() {setMark('Construction site')};
+
+var beach = elements[7];
+beach.onclick = function() {setMark("Dog's beach")};
+
+var Garbage = elements[8];
+Garbage.onclick = function() {setMark('Garbage area')};
+
+var Poisonous = elements[9];
+Poisonous.onclick = function() {setMark("Poisonous area")};
 
 var beach = elements[7];
 beach.onclick = function() {setMark("Dog's beach")};

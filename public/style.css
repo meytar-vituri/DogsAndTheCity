@@ -22,6 +22,12 @@ html, body {
   right: 10px;
   z-index: 1000;
 }
+#filter-pins-button {
+  position: absolute;
+  bottom: 80px;
+  right: 10px;
+  z-index: 1000;
+}
 
 .add-pin-button--active {
   background-color: rgb(141, 191, 204);

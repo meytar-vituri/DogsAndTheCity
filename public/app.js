@@ -10,6 +10,9 @@ function removePinFromDB(id){
     });
 
 }
+function openFilterPinsWindow() {
+  //TODO: OPEN FILTER WINDOW
+}
 if (USE_OPEN_STREET_MAP) {
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,

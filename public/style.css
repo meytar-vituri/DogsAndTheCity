@@ -91,6 +91,28 @@ html, body {
   right: 50%;
   
 }
+.info_style{
+  position: absolute;
+  z-index: 9;
+  right: 11px;
+  bottom: 80px;
+
+}
+.info-menu{
+  position: absolute;
+  z-index: 9;
+
+}
+.info-text{
+  padding: 10px 10px 10px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 14px;
+  display: block;
+  text-align: center;
+
+}
+
 
 
 .dialog-size-view {/*this is the size of the dialog of adding new marker*/

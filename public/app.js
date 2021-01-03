@@ -177,17 +177,19 @@ const buttonGrid = document.getElementById("button-grid");
 
 
 var marks = ["Veterinarian", "Cats area", "Dog friendly Restaurant", "Dogs Park", "Add new negative mark", "Add new positive mark",
-              "Construction site", "Dog's beach", "Garbage area", "Poisonous area"];
+              "Construction site", "Dog's beach", "Garbage area", "Poisonous area", "Crowded Area", "Saki-Kaki", "Water Area", "Inspector","Pets Shop"];
 var dict = {};
 var markers_dict = {"Veterinarian" : "markers/Veterinarian.png","Cats area" :"markers/Cats_area.png", "Dog friendly Restaurant":"markers/Dog_friendly_Restaurant.png" ,
                   "Dogs Park" : "markers/Dogs_Park.png", "Add new negative mark":"markers/Add_new_negative_mark.png", "Add new positive mark" :"markers/Add_new_positive_mark.png",
                   "Construction site":"markers/Construction_site.png", "Dog's beach": "markers/Dog's_beach.png", "Garbage area" :"markers/Garbage_dump_area.png",
-                  "Poisonous area":"markers/Poisonous_area.png"};
+                  "Poisonous area":"markers/Poisonous_area.png", "Crowded Area":"markers/crowded_area_mark.png", "Saki-Kaki":"markers/saki-kaki_mark.png", 
+                   "Water Area":"markers/water_mark.png", "Inspector":"markers/inspector_mark.png", "Pets Shop":"markers/pets_shop_mark.png"};
 
 var dialog_dict = {"Veterinarian" : "Buttons/Veterinarian_Button.png","Cats area" :"Buttons/Cats_area_Button.png", "Dog friendly Restaurant":"Buttons/Dog_friendly_Restaurant_Button.png" ,
                   "Dogs Park" : "Buttons/Dogs_Park_Button.png", "Add new negative mark":"Buttons/Add_new_negative_mark_Button.png", "Add new positive mark" :"Buttons/Add_new_positive_mark_Button.png",
                   "Construction site":"Buttons/Construction_site_Button.png", "Dog's beach": "Buttons/Dog's_beach_Button.png", "Garbage area" :"Buttons/Garbage_dump_area_Button.png",
-                  "Poisonous area":"Buttons/Poisonous_area_Button.png"};
+                  "Poisonous area":"Buttons/Poisonous_area_Button.png","Crowded Area":"Buttons/crowded_area_Button.png", "Saki-Kaki":"Buttons/saki-kaki_Button.png", 
+                   "Water Area":"Buttons/water_Button.png", "Inspector":"Buttons/inspector_Button.png", "Pets Shop":"Buttons/pets_shop_Button.png"};
 
 var count = 0;
 for(element of marks){
@@ -200,12 +202,7 @@ for(element of marks){
 }
 
 
-
-
-
-var elements = [];
-
-for(element of marks){
+function create_add_button(element){
   var img = document.createElement('IMG');
   let but = document.createElement('button');
   let span1 = document.createElement('span');
@@ -235,18 +232,46 @@ for(element of marks){
   span2.className = "my-text";
 
   but.className = "mdl-cell mdl-cell--2-col-phone my-fancy-container button";
-
-
   
   but.appendChild(span1);
   but.appendChild(span2);
-
-  //div.appendChild(but);
-  /*divMap['vet'] = div;*/
-
   buttonGrid.appendChild(but);
+};
+function show_info(){
 
-}  
+};
+
+function create_info_button(){
+  let but = document.createElement('button');
+  let div = document.createElement('div');
+  let span = document.createElement('span');
+
+  /*
+  <button id="info-button" onclick="show_info()" class="mdc-fab info_style">
+    <div class="mdc-fab__ripple"></div>
+    <span class="mdc-fab__icon material-icons">info</span>
+  </button>
+*/
+
+  but.id = "info-button";
+  but.onclick = show_info();
+  but.className = "mdc-fab info_style" ;
+  div.className = "mdc-fab__ripple";
+  span.className = "mdc-fab__icon material-icons";
+  span.textContent = "info";
+
+  but.appendChild(div);
+  but.appendChild(span);
+  body.appendChild(but);
+
+};
+
+var elements = [];
+
+for(element of marks){
+  create_add_button(element);
+};
+create_info_button();
 
 var Veterinarian = elements[0];
 Veterinarian.onclick = function() {setMark('Veterinarian')};
@@ -262,28 +287,32 @@ Park.onclick = function() {setMark('Dogs Park')};
 
 var neg_m = elements[4];
 neg_m.onclick = function() {setMark('Add new negative mark')};
-
 var pos_m = elements[5];
 pos_m.onclick = function() {setMark('Add new positive mark')};
-
 var Construction = elements[6];
 Construction.onclick = function() {setMark('Construction site')};
-
 var beach = elements[7];
 beach.onclick = function() {setMark("Dog's beach")};
-
 var Garbage = elements[8];
 Garbage.onclick = function() {setMark('Garbage area')};
-
 var Poisonous = elements[9];
 Poisonous.onclick = function() {setMark("Poisonous area")};
-
 var beach = elements[7];
 beach.onclick = function() {setMark("Dog's beach")};
-
 var Garbage = elements[8];
 Garbage.onclick = function() {setMark('Garbage area')};
-
 var Poisonous = elements[9];
 Poisonous.onclick = function() {setMark("Poisonous area")};
+var Poisonous = elements[10];
+Poisonous.onclick = function() {setMark("Crowded Area")};
+var Poisonous = elements[11];
+Poisonous.onclick = function() {setMark("Saki-Kaki")};
+var Poisonous = elements[12];
+Poisonous.onclick = function() {setMark("Water Area")};
+var Poisonous = elements[13];
+Poisonous.onclick = function() {setMark("Inspector")};
+var Poisonous = elements[14];
+Poisonous.onclick = function() {setMark("Pets Shop")};
+
+
 

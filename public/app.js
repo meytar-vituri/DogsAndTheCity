@@ -274,7 +274,7 @@ var elements = [];
 for(element of marks){
   create_add_button(element);
 };
-create_info_button();
+//create_info_button();
 
 var Veterinarian = elements[0];
 Veterinarian.onclick = function() {setMark('Veterinarian')};

@@ -100,13 +100,13 @@ html, body {
 .info_style{
   position: absolute;
   z-index: 9;
-  right: 11px;
-  bottom: 80px;
+  right: 10px;
+  bottom: 150px;
 
 }
 .info-menu{
   position: absolute;
-  z-index: 9;
+  z-index: 1000;
 
 }
 .info-text{

@@ -29,7 +29,7 @@ html, body {
   z-index: 1000;
 }
 
-.add-pin-button--active {
+.button--active {
   background-color: rgb(141, 191, 204);
 }
 

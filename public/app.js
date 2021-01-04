@@ -10,9 +10,7 @@ function removePinFromDB(id){
     });
 
 }
-function openFilterPinsWindow() {
-  //TODO: OPEN FILTER WINDOW
-}
+
 if (USE_OPEN_STREET_MAP) {
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -71,7 +69,7 @@ map.on('mousedown touchstart', function onMouseDown(event) {
     currentPinCoords = event.latlng;
     pinInPlacement = false;
 
-    dialog.showModal();
+    add_pin_dialog.showModal();
   }
 });
 
@@ -79,20 +77,47 @@ map.on('mousedown touchstart', function onMouseDown(event) {
 function addPin() {
   pinInPlacement = true;
   const pinButton = document.getElementById('add-pin-button');
-  pinButton.classList.add('add-pin-button--active');
+  pinButton.classList.add('button--active');
 }
 
-// Register dialog
-const dialog = document.querySelector('dialog');
-if (!dialog.showModal) {
-  dialogPolyfill.registerDialog(dialog);
+// Register add pin dialog
+const add_pin_dialog = document.getElementById('add_pin_dialog');
+if (!add_pin_dialog.showModal) {
+  dialogPolyfill.registerDialog(add_pin_dialog);
 }
 
+
+// Register filter pins dialog
+const filter_pins_dialog = document.getElementById('filter_pins_dialog');
+if (!filter_pins_dialog.showModal) {
+  dialogPolyfill.registerDialog(filter_pins_dialog);
+}
+
+function openFilterPinsWindow() {
+  console.log("filtering!");
+  const pinButton = document.getElementById('filter-pins-button');
+  pinButton.classList.add('button--active');
+  filter_pins_dialog.showModal();
+}
+
+//closing the filter pins dialog
+filter_pins_dialog.querySelector('.close').addEventListener('click', function () {
+  filter_pins_dialog.close();
+  deactivateFilterinButton();
+});
+
+// changing the color of the filter pins buttons back to 'unchecked'
+function deactivateAddPinButton() {
+  const filter_pins_button = document.getElementById("filter-pins-button");
+  filter_pins_button.classList.remove('button--active');
+  console.log(pinButton.classList); // ['colorText', 'boldText'];
+
+}
 
 /*new func to add diff icons*/
 function setMark(element) {
   //divMap[id]
-  dialog.close();
+  add_pin_dialog.close();
 
   if (currentPinCoords) {
     L.marker(currentPinCoords, {icon :dict[element]}).addTo(map).bindPopup(element);
@@ -123,15 +148,15 @@ function setMark(element) {
 
 // Dialog close (without saving)
 
-dialog.querySelector('.close').addEventListener('click', function () {
-  dialog.close();
+add_pin_dialog.querySelector('.close').addEventListener('click', function () {
+  add_pin_dialog.close();
   deactivateAddPinButton();
 });
 
 // Dialog helper method (i.e change button color)
 function deactivateAddPinButton() {
   const pinButton = document.getElementById("add-pin-button");
-  pinButton.classList.remove('add-pin-button--active');
+  pinButton.classList.remove('button--active');
   console.log(pinButton.classList); // ['colorText', 'boldText'];
 
 }

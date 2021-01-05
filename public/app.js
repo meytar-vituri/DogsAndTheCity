@@ -38,21 +38,46 @@ const ZOOM_TO_LOCATION = true;
 
 // Example code to show how to get GPS location and place pin on map in that location
 
+
 if (ZOOM_TO_LOCATION) {
   function onLocationFound(e) {
-    let radius = e.accuracy  / 3 ;
+    let radius = e.accuracy / 2;
+    if (locationMarker) {
+      map.removeLayer(locationMarker);
+    }
+    if (locationRadius) {
+      map.removeLayer(locationRadius);
+    }
 
-    //if we want to see pin in location should use this 
-
-    /*L.marker(e.latlng, {icon : dict["home"]})
-        .addTo(map)
-        .on('dblclick', onDoubleClick)
-        .bindPopup("You are within " + radius + " meters from this point")
-        .openPopup();
-*/
-    L.circle(e.latlng, radius).addTo(map).bindPopup("You are here");//with this we have circle in location
-
+    locationMarker = L.marker(e.latlng).addTo(map);
+    locationRadius = L.circle(e.latlng, radius).addTo(map);
   }
+
+  function onLocationError(e) {
+    console.log(e.message);
+  }
+
+  function onLocationUpdateFound(e) {
+    const latlng = L.latLng(e.coords.latitude, e.coords.longitude);
+    locationMarker.setLatLng(latlng); 
+    locationRadius.setLatLng(latlng);
+  }
+
+  function onLocationUpdateError(e) {
+    console.log(e.message);
+  }
+
+  var G_options = {
+    enableHighAccuracy: true,
+    maximumAge: 0,
+    timeout: 30000
+  };
+
+  map.on('locationfound', onLocationFound);
+  map.on('locationerror', onLocationError);
+  map.locate({ setView: true, maxZoom: 16 });
+  navigator.geolocation.watchPosition(onLocationUpdateFound, onLocationUpdateError, G_options);
+}
 
   function onLocationError(e) {
     console.log(e.message);

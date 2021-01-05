@@ -52,10 +52,11 @@
     <span class="mdc-fab__icon material-icons">filter_alt</span>
   </button>
 
+  
 
-  <dialog class="mdl-dialog dialog-size-view">
+  <dialog id="add_pin_dialog" class="mdl-dialog dialog-size-view">
 
-   <div id= 'dialog-top' class ='fixed-title'>
+   <div id= 'add-pin-dialog-top' class ='fixed-title'>
      <span>
         <button type="button" class="mdl-button close b">&#10006</button>
       
@@ -67,9 +68,28 @@
       <div class = "mdl-grid " id="button-grid">
 
        </div>
-
+       </div>
 
   </dialog>
+
+  <dialog id="filter_pins_dialog" class="mdl-dialog dialog-size-view">
+
+    <div id= 'filter-dialog-top' class ='fixed-title'>
+      <span>
+         <button type="button" class="mdl-button close b">&#10006</button>
+          <h4 class="mdl-dialog__title h4-text-size">filter points dialog</h4>
+      </span>
+       </div>
+       
+       <div class="mdl-dialog-my-content ">
+ 
+       <div class = "mdl-grid " id="button-grid">
+ 
+        </div>
+        </div>
+      
+ 
+   </dialog>
   <script src="app.js"></script>
 </body>
 </html>

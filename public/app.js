@@ -38,6 +38,8 @@ const ZOOM_TO_LOCATION = true;
 
 // Example code to show how to get GPS location and place pin on map in that location
 
+let locationMarker;
+let locationRadius;
 
 if (ZOOM_TO_LOCATION) {
   function onLocationFound(e) {
@@ -77,15 +79,6 @@ if (ZOOM_TO_LOCATION) {
   map.on('locationerror', onLocationError);
   map.locate({ setView: true, maxZoom: 16 });
   navigator.geolocation.watchPosition(onLocationUpdateFound, onLocationUpdateError, G_options);
-}
-
-  function onLocationError(e) {
-    console.log(e.message);
-  }
-
-  map.on('locationfound', onLocationFound);
-  map.on('locationerror', onLocationError);
-  map.locate({setView: true, maxZoom: 16});
 }
 
 // Map press event

@@ -68,7 +68,6 @@ map.on('mousedown touchstart', function onMouseDown(event) {
   if (pinInPlacement) {
     currentPinCoords = event.latlng;
     pinInPlacement = false;
-
     add_pin_dialog.showModal();
   }
 });
@@ -81,38 +80,27 @@ function addPin() {
 }
 
 // Register add pin dialog
-const add_pin_dialog = document.getElementById('add_pin_dialog');
+const add_pin_dialog = document.getElementById("add_pin_dialog");
 if (!add_pin_dialog.showModal) {
   dialogPolyfill.registerDialog(add_pin_dialog);
 }
 
 
-// Register filter pins dialog
-const filter_pins_dialog = document.getElementById('filter_pins_dialog');
-if (!filter_pins_dialog.showModal) {
-  dialogPolyfill.registerDialog(filter_pins_dialog);
-}
+
 
 function openFilterPinsWindow() {
   console.log("filtering!");
   const pinButton = document.getElementById('filter-pins-button');
   pinButton.classList.add('button--active');
+  const filter_pins_dialog = document.getElementById("filter_pins_dialog");
+  if (!add_pin_dialog.showModal) {
+  dialogPolyfill.registerDialog(filter_pins_dialog);
+  }
   filter_pins_dialog.showModal();
 }
 
-//closing the filter pins dialog
-filter_pins_dialog.querySelector('.close').addEventListener('click', function () {
-  filter_pins_dialog.close();
-  deactivateFilterinButton();
-});
 
-// changing the color of the filter pins buttons back to 'unchecked'
-function deactivateAddPinButton() {
-  const filter_pins_button = document.getElementById("filter-pins-button");
-  filter_pins_button.classList.remove('button--active');
-  console.log(pinButton.classList); // ['colorText', 'boldText'];
 
-}
 
 /*new func to add diff icons*/
 function setMark(element) {

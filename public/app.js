@@ -41,7 +41,7 @@ const ZOOM_TO_LOCATION = true;
 var my_location = L.icon({
     iconUrl: 'my_location.png',
     iconSize:     [30, 30], // size of the icon
-    iconAnchor:   [15, 30], // point of the icon which will correspond to marker's location
+    iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
 })
 
@@ -360,6 +360,5 @@ var Inspector = elements[13];
 Inspector.onclick = function() {setMark("Inspector")};
 var Shop = elements[14];
 Shop.onclick = function() {setMark("Pets Shop")};
-
 
 

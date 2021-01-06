@@ -45,12 +45,24 @@ var my_location = L.icon({
     popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
 })
 
+let locationMarker;
+let locationRadius;
+
 if (ZOOM_TO_LOCATION) {
   function onLocationFound(e) {
-    let radius = e.accuracy  / 3 ;
+    let radius = e.accuracy / 2;
+    if (locationMarker) {
+      map.removeLayer(locationMarker);
+    }
+    if (locationRadius) {
+      map.removeLayer(locationRadius);
+    }
 
-    //if we want to see pin in location should use this 
+    locationMarker = L.marker(e.latlng).addTo(map);
+    locationRadius = L.circle(e.latlng, radius).addTo(map);
+  }
 
+<<<<<<< HEAD
     L.marker(e.latlng, {icon : my_location})
         .addTo(map)
         .bindPopup("You are here");
@@ -59,16 +71,32 @@ if (ZOOM_TO_LOCATION) {
 
       L.circle(e.latlng, radius).addTo(map).bindPopup("You are here");//with this we have circle in location
     }*/
-
-  }
-
+=======
   function onLocationError(e) {
     console.log(e.message);
   }
+>>>>>>> 6991a51e3b9379b8756ea5b1187d65883d522744
+
+  function onLocationUpdateFound(e) {
+    const latlng = L.latLng(e.coords.latitude, e.coords.longitude);
+    locationMarker.setLatLng(latlng); 
+    locationRadius.setLatLng(latlng);
+  }
+
+  function onLocationUpdateError(e) {
+    console.log(e.message);
+  }
+
+  var G_options = {
+    enableHighAccuracy: true,
+    maximumAge: 0,
+    timeout: 30000
+  };
 
   map.on('locationfound', onLocationFound);
   map.on('locationerror', onLocationError);
-  map.locate({setView: true, maxZoom: 16});
+  map.locate({ setView: true, maxZoom: 16 });
+  navigator.geolocation.watchPosition(onLocationUpdateFound, onLocationUpdateError, G_options);
 }
 
 // Map press event

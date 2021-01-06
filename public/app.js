@@ -2,7 +2,7 @@ const map = L.map('map').fitWorld();
 
 //let divMap = {};
 const USE_OPEN_STREET_MAP = true;
-const temporaryMarkerTypes = ["Cats area", "Dogs Park", "Garbage area", "Poisonous area"]; //types for temporary markers
+const temporaryMarkerTypes = ["Report Poop on sidewalk", "Report Dog without owner", "Cats area", "Dogs Park", "Garbage area", "Poisonous area"]; //types for temporary markers
 const dayInMilliSeconds = (24*60*60*1000); //24 hours in millisenconds. used to remove dynamicIconcs
 function removePinFromDB(id){
       fetch(`/delete_point?id=${id}&data=${JSON.stringify(id)}`, {
@@ -36,7 +36,14 @@ let pinInPlacement = false;
 let currentPinCoords = null;
 const ZOOM_TO_LOCATION = true;
 
+
 // Example code to show how to get GPS location and place pin on map in that location
+var my_location = L.icon({
+    iconUrl: 'my_location.png',
+    iconSize:     [30, 30], // size of the icon
+    iconAnchor:   [15, 30], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
+})
 
 if (ZOOM_TO_LOCATION) {
   function onLocationFound(e) {
@@ -44,13 +51,14 @@ if (ZOOM_TO_LOCATION) {
 
     //if we want to see pin in location should use this 
 
-    /*L.marker(e.latlng, {icon : dict["home"]})
+    L.marker(e.latlng, {icon : my_location})
         .addTo(map)
-        .on('dblclick', onDoubleClick)
-        .bindPopup("You are within " + radius + " meters from this point")
-        .openPopup();
-*/
-    L.circle(e.latlng, radius).addTo(map).bindPopup("You are here");//with this we have circle in location
+        .bindPopup("You are here");
+/*
+    if(radios > 30){
+
+      L.circle(e.latlng, radius).addTo(map).bindPopup("You are here");//with this we have circle in location
+    }*/
 
   }
 
@@ -192,17 +200,17 @@ const buttonGrid = document.getElementById("button-grid");
 
 
 
-var marks = ["Veterinarian", "Cats area", "Dog friendly Restaurant", "Dogs Park", "Add new negative mark", "Add new positive mark",
+var marks = ["Report Poop on sidewalk", "Report Dog without owner", "Veterinarian", "Cats area", "Dog friendly Restaurant", "Dogs Park", 
               "Construction site", "Dog's beach", "Garbage area", "Poisonous area", "Crowded Area", "Saki-Kaki", "Water Area", "Inspector","Pets Shop"];
 var dict = {};
-var markers_dict = {"Veterinarian" : "markers/Veterinarian.png","Cats area" :"markers/Cats_area.png", "Dog friendly Restaurant":"markers/Dog_friendly_Restaurant.png" ,
-                  "Dogs Park" : "markers/Dogs_Park.png", "Add new negative mark":"markers/Add_new_negative_mark.png", "Add new positive mark" :"markers/Add_new_positive_mark.png",
+var markers_dict = {"Report Poop on sidewalk" : "markers/Report_Poop_on_sidewalk_mark.png", "Report Dog without owner": "markers/Report_Dog_without_owner_mark.png", "Veterinarian" : "markers/Veterinarian.png","Cats area" :"markers/Cats_area.png", "Dog friendly Restaurant":"markers/Dog_friendly_Restaurant.png" ,
+                  "Dogs Park" : "markers/Dogs_Park.png",
                   "Construction site":"markers/Construction_site.png", "Dog's beach": "markers/Dog's_beach.png", "Garbage area" :"markers/Garbage_dump_area.png",
                   "Poisonous area":"markers/Poisonous_area.png", "Crowded Area":"markers/crowded_area_mark.png", "Saki-Kaki":"markers/saki-kaki_mark.png", 
                    "Water Area":"markers/water_mark.png", "Inspector":"markers/inspector_mark.png", "Pets Shop":"markers/pets_shop_mark.png"};
 
-var dialog_dict = {"Veterinarian" : "Buttons/Veterinarian_Button.png","Cats area" :"Buttons/Cats_area_Button.png", "Dog friendly Restaurant":"Buttons/Dog_friendly_Restaurant_Button.png" ,
-                  "Dogs Park" : "Buttons/Dogs_Park_Button.png", "Add new negative mark":"Buttons/Add_new_negative_mark_Button.png", "Add new positive mark" :"Buttons/Add_new_positive_mark_Button.png",
+var dialog_dict = {"Report Poop on sidewalk":"Buttons/Report_Poop_on_sidewalk_Button.png", "Report Dog without owner": "Buttons/Report_Dog_without_owner_Button.png", "Veterinarian" : "Buttons/Veterinarian_Button.png","Cats area" :"Buttons/Cats_area_Button.png", "Dog friendly Restaurant":"Buttons/Dog_friendly_Restaurant_Button.png" ,
+                  "Dogs Park" : "Buttons/Dogs_Park_Button.png",
                   "Construction site":"Buttons/Construction_site_Button.png", "Dog's beach": "Buttons/Dog's_beach_Button.png", "Garbage area" :"Buttons/Garbage_dump_area_Button.png",
                   "Poisonous area":"Buttons/Poisonous_area_Button.png","Crowded Area":"Buttons/crowded_area_Button.png", "Saki-Kaki":"Buttons/saki-kaki_Button.png", 
                    "Water Area":"Buttons/water_Button.png", "Inspector":"Buttons/inspector_Button.png", "Pets Shop":"Buttons/pets_shop_Button.png"};
@@ -287,24 +295,33 @@ var elements = [];
 for(element of marks){
   create_add_button(element);
 };
-//create_info_button();
 
-var Veterinarian = elements[0];
+
+
+var Report_Poop = elements[0];
+Report_Poop.onclick = function() {setMark('Report Poop on sidewalk')};
+
+var Report_Dog = elements[1];
+Report_Dog.onclick = function() {setMark('Report Dog without owner')};
+
+
+var Veterinarian = elements[2];
 Veterinarian.onclick = function() {setMark('Veterinarian')};
 
-var Cats = elements[1];
+var Cats = elements[3];
 Cats.onclick = function() {setMark('Cats area')};
 
-var Restaurants = elements[2];
+var Restaurants = elements[4];
 Restaurants.onclick = function() {setMark('Dog friendly Restaurant')};
 
-var Park = elements[3];
+var Park = elements[5];
 Park.onclick = function() {setMark('Dogs Park')};
-
+/*
 var neg_m = elements[4];
 neg_m.onclick = function() {setMark('Add new negative mark')};
 var pos_m = elements[5];
 pos_m.onclick = function() {setMark('Add new positive mark')};
+*/
 var Construction = elements[6];
 Construction.onclick = function() {setMark('Construction site')};
 var beach = elements[7];
@@ -313,22 +330,17 @@ var Garbage = elements[8];
 Garbage.onclick = function() {setMark('Garbage area')};
 var Poisonous = elements[9];
 Poisonous.onclick = function() {setMark("Poisonous area")};
-var beach = elements[7];
-beach.onclick = function() {setMark("Dog's beach")};
-var Garbage = elements[8];
-Garbage.onclick = function() {setMark('Garbage area')};
-var Poisonous = elements[9];
-Poisonous.onclick = function() {setMark("Poisonous area")};
-var Poisonous = elements[10];
-Poisonous.onclick = function() {setMark("Crowded Area")};
-var Poisonous = elements[11];
-Poisonous.onclick = function() {setMark("Saki-Kaki")};
-var Poisonous = elements[12];
-Poisonous.onclick = function() {setMark("Water Area")};
-var Poisonous = elements[13];
-Poisonous.onclick = function() {setMark("Inspector")};
-var Poisonous = elements[14];
-Poisonous.onclick = function() {setMark("Pets Shop")};
+
+var Crowded = elements[10];
+Crowded.onclick = function() {setMark("Crowded Area")};
+var Saki = elements[11];
+Saki.onclick = function() {setMark("Saki-Kaki")};
+var Water = elements[12];
+Water.onclick = function() {setMark("Water Area")};
+var Inspector = elements[13];
+Inspector.onclick = function() {setMark("Inspector")};
+var Shop = elements[14];
+Shop.onclick = function() {setMark("Pets Shop")};
 
 
 

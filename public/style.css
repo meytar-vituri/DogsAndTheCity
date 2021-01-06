@@ -33,11 +33,12 @@ html, body {
   background-color: rgb(141, 191, 204);
 }
 
+
 /*/////////////////////////////////*/
 .mdl-dialog-my-content{
   padding: 70px 0px 0px;
   position: relative;
-  //overflow: auto;
+  overflow: auto;
   /*padding: 5px;
   overflow: auto;
   display: block;
@@ -105,19 +106,71 @@ html, body {
 
 }
 .info-menu{
-  position: absolute;
+  padding: 0px 0px 0px;
+
   z-index: 1000;
 
 }
 .info-text{
-  padding: 10px 10px 10px;
+  padding: 2px 2px 2px;
+
+  float: left;
   color: rgb(0, 0, 0);
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   display: block;
   text-align: center;
 
+
 }
+
+.info-but{
+  vertical-align: middle;
+
+  border: 0px solid white;
+  padding: 0;
+  width: 200px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  background-color: rgb(255, 255, 255);
+  z-index: 10;
+}
+.info-border{
+    padding: 10px 10px 10px;
+    text-align: center;
+
+}
+.phone{
+
+  color: rgb(3, 69, 85);
+  float: right;
+  display: block;
+  border-radius: 5px;
+}
+
+
+
+
+/*
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    
+  <div class="container">
+    <div class="row">
+      <form action="tel:03-7247870"><button class="btn btn-lg btn-success col-xs-12 call-us"><span ></span>Contact TLV Municipality</button></form>
+    </div>
+  </div>
+
+.container {
+  margin-top: 0px;
+}
+
+.call-us {
+  float: right;
+}
+
+*/
 
 
 

@@ -29,13 +29,25 @@
 
   <button id="demo-menu-top-right" class="mdc-fab info_style ">
     <div class="mdc-fab__ripple"></div>
-    <span class="mdc-fab__icon material-icons">info</span>
+    <span class="mdc-fab__icon material-icons">call</span>
   </button>
+
+
+
+
 
 <ul class="info-menu mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
     data-mdl-for="demo-menu-top-right">
-  <a href = "mailto: dogsandthecityil@gmail.com" class = "info-text">dogsandthecityil@gmail.com</a>
-  <a href="tel:03-7247870" class = "info-text">עיריית תל אביב- מחלקה הווטרינרית, אגף הפיקוח</a>
+
+  <div class = "info-border">
+    <form action="tel:03-7247870"><button class="info-but"> <span class = " info-text" type="submit">Call TLV Municipality </span> <span class="mdc-fab__icon material-icons phone">call</span></button></form>
+  </div>
+
+  <div class = "info-border">
+    <form action="mailto: dogsandthecityil@gmail.com"><button class = "info-but"> <span class="info-text" type="submit">Email us</span><span class="mdc-fab__icon material-icons phone">email</span></button></form>
+  </div>
+
+
 </ul>
 
 

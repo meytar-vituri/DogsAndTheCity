@@ -50,7 +50,7 @@ let locationRadius;
 
 if (ZOOM_TO_LOCATION) {
   function onLocationFound(e) {
-    let radius = e.accuracy / 2;
+    let radius = e.accuracy / 3;
     if (locationMarker) {
       map.removeLayer(locationMarker);
     }
@@ -58,24 +58,15 @@ if (ZOOM_TO_LOCATION) {
       map.removeLayer(locationRadius);
     }
 
-    locationMarker = L.marker(e.latlng).addTo(map);
+    locationMarker = L.marker(e.latlng, {icon : my_location})
+        .addTo(map)
+        .bindPopup("You are here");
     locationRadius = L.circle(e.latlng, radius).addTo(map);
   }
 
-<<<<<<< HEAD
-    L.marker(e.latlng, {icon : my_location})
-        .addTo(map)
-        .bindPopup("You are here");
-/*
-    if(radios > 30){
-
-      L.circle(e.latlng, radius).addTo(map).bindPopup("You are here");//with this we have circle in location
-    }*/
-=======
   function onLocationError(e) {
     console.log(e.message);
   }
->>>>>>> 6991a51e3b9379b8756ea5b1187d65883d522744
 
   function onLocationUpdateFound(e) {
     const latlng = L.latLng(e.coords.latitude, e.coords.longitude);

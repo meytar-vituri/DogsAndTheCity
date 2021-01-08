@@ -112,8 +112,19 @@ if (!add_pin_dialog.showModal) {
   dialogPolyfill.registerDialog(add_pin_dialog);
 }
 
-
+function setShouldBeChecked(mark, shouldBeChecked) {
+  for (element of filter_form.elements) {
+    if (element.type == "checkbox" && element.id == mark) {
+      element.checked = shouldBeChecked;
+    }
+  }
+}
 function openFilterPinsWindow() {
+  // set for each marker if its checkbox should be checked
+ for (mark of marks) {
+   setShouldBeChecked(mark, true); //TODO (Meytar): change true to some shouldBeChecked for each marker according to map
+ }
+ select_all_checkbox.checked = true; //TODO (Meytar): change true according to current filters on map
   console.log("filtering!");
   const filterButton = document.getElementById('filter-pins-button');
   filterButton.classList.add('button--active');
@@ -293,14 +304,11 @@ function create_add_button(element){
   buttonGrid.appendChild(but);
 };
 
-function add_to_filter_dialog (mark, shouldBeChecked) {
+function add_to_filter_dialog (mark) {
   var img = document.createElement('IMG');
   let markCheckBox = document.createElement('input');
   markCheckBox.setAttribute('type', "checkbox");
   markCheckBox.setAttribute('id', mark);
-  if (shouldBeChecked == true) {
-    markCheckBox.checked = true;
-  }
   let markDiv = document.createElement('div');
   let imgSpan = document.createElement('span');
   let cbSpan = document.createElement('span');
@@ -389,9 +397,9 @@ selectAllTextSpan.className = "my-text";
 select_all_div.appendChild(select_all_cb_span);
 select_all_div.appendChild(selectAllTextSpan);
 for(mark of marks){
-  add_to_filter_dialog(mark, true); //TODO (Meytar): change true to some shouldBeChecked for each marker according to map
+  add_to_filter_dialog(mark);
  };
- select_all_checkbox.checked = true; //TODO (Meytar): change true according to current filters on map
+
  const filter_form = document.getElementById("filter_form");
  select_all_checkbox.onclick = function() {
   var shouldCheck;

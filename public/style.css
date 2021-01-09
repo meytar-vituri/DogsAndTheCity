@@ -46,7 +46,10 @@ html, body {
   align-self: center;*/
 
 }
-
+.center_items {
+  display: flex;
+  justify-content: center;
+}
 .h4-text-size{
   font-family: 'Exo';
   color: #ffffff;

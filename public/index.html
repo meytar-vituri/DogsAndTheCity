@@ -87,18 +87,27 @@
     <div id= 'filter-dialog-top' class ='fixed-title'>
       <span>
          <button type="button" class="mdl-button close b">&#10006</button>
-          <h4 class="mdl-dialog__title h4-text-size">filter points dialog</h4>
+          <h4 class="mdl-dialog__title h4-text-size">Filter</h4>
       </span>
-       </div>
+    </div>
        
-       <div class="mdl-dialog-my-content ">
- 
-       <div class = "mdl-grid " id="button-grid">
- 
+    <div class="mdl-dialog-my-content ">
+      <form id = "filter_form">
+        <div class = center_items>
+          <div id="select_all_div"></div>
+        </div>        
+        <div class = "mdl-grid" id="checkbox_grid">
+
+
         </div>
+        <div class = center_items>
+          <div id="filter_button_div">
+            <input type="button" onclick = "filter_points(filter_form)" value="Filter" id="filter_button" class = "mdl-button mdl-button--raised mdl-button--colored">
+          </div>
         </div>
-      
- 
+      </form>
+    </div>
+
    </dialog>
   <script src="app.js"></script>
 </body>

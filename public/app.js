@@ -112,20 +112,28 @@ if (!add_pin_dialog.showModal) {
   dialogPolyfill.registerDialog(add_pin_dialog);
 }
 
-
-
-
+function setShouldBeChecked(mark, shouldBeChecked) {
+  for (element of filter_form.elements) {
+    if (element.type == "checkbox" && element.id == mark) {
+      element.checked = shouldBeChecked;
+    }
+  }
+}
 function openFilterPinsWindow() {
+  // set for each marker if its checkbox should be checked
+ for (mark of marks) {
+   setShouldBeChecked(mark, true); //TODO (Meytar): change true to some shouldBeChecked for each marker according to map
+ }
+ select_all_checkbox.checked = true; //TODO (Meytar): change true according to current filters on map
   console.log("filtering!");
-  const pinButton = document.getElementById('filter-pins-button');
-  pinButton.classList.add('button--active');
+  const filterButton = document.getElementById('filter-pins-button');
+  filterButton.classList.add('button--active');
   const filter_pins_dialog = document.getElementById("filter_pins_dialog");
-  if (!add_pin_dialog.showModal) {
+  if (!filter_pins_dialog.showModal) {
   dialogPolyfill.registerDialog(filter_pins_dialog);
   }
   filter_pins_dialog.showModal();
 }
-
 
 
 
@@ -176,6 +184,20 @@ function deactivateAddPinButton() {
 
 }
 
+// filter Dialog close (without saving)
+
+filter_pins_dialog.querySelector('.close').addEventListener('click', function () {
+  filter_pins_dialog.close();
+  deactivateFilterButton();
+});
+
+// Dialog helper method (i.e change button color)
+function deactivateFilterButton() {
+  const filterButton = document.getElementById("filter-pins-button");
+  filterButton.classList.remove('button--active');
+
+}
+
 // Load map:
 
   
@@ -213,6 +235,7 @@ function getRandomId() {
 
 
 const buttonGrid = document.getElementById("button-grid");
+const checkBoxGrid = document.getElementById("checkbox_grid");
 /*const dialog = document.getElementById("dialog")*;*/
 
 
@@ -280,9 +303,53 @@ function create_add_button(element){
   but.appendChild(span2);
   buttonGrid.appendChild(but);
 };
+
+function add_to_filter_dialog (mark) {
+  var img = document.createElement('IMG');
+  let markCheckBox = document.createElement('input');
+  markCheckBox.setAttribute('type', "checkbox");
+  markCheckBox.setAttribute('id', mark);
+  let markDiv = document.createElement('div');
+  let imgSpan = document.createElement('span');
+  let cbSpan = document.createElement('span');
+  cbSpan.appendChild(markCheckBox);
+  let textSpan = document.createElement('span');
+  //let div = document.createElement('div');
+
+  //but.setAttribute("style", "background-color: rgb(255, 255, 255, 0); border: none;");
+  markDiv.setAttribute('class', 'mdl-cell mdl-cell--2-col-phone');
+  //markDiv.className = "mdc-fab__ripple ";
+  //but.appendChild(div);
+
+  var markImgFile = dialog_dict[mark];
+  img.setAttribute("src", markImgFile);
+  img.setAttribute("width", "50");
+  img.setAttribute("height", "50");
+  
+
+ textSpan.textContent = mark;
+ textSpan.style.fontWeight = "600";
+  imgSpan.appendChild(img);
+
+  textSpan.className = "my-text";
+
+  //but.className = "mdl-cell mdl-cell--2-col-phone my-fancy-container button";
+  
+  markDiv.appendChild(cbSpan);
+  markDiv.appendChild(imgSpan);
+  markDiv.appendChild(textSpan);
+  checkBoxGrid.appendChild(markDiv);
+};
 function show_info(){
 
 };
+
+function filter_points(form_element) {
+  //TODO (Meytar): filter points according to checkboxes in form_element
+
+  filter_pins_dialog.close();
+  deactivateFilterButton();
+}
 
 function create_info_button(){
   let but = document.createElement('button');
@@ -311,8 +378,44 @@ function create_info_button(){
 
 var elements = [];
 
+//Set add dialog contents
 for(element of marks){
   create_add_button(element);
+};
+//Set filter dialog contents
+let select_all_div = document.getElementById('select_all_div');
+const select_all_grid = document.getElementById('checkbox_grid');
+let select_all_checkbox = document.createElement('input');
+select_all_checkbox.setAttribute('type', 'checkbox');
+select_all_checkbox.setAttribute('id', 'selectall');
+let select_all_cb_span = document.createElement('span');
+let selectAllTextSpan = document.createElement('span');
+select_all_cb_span.appendChild(select_all_checkbox);
+selectAllTextSpan.textContent = "Select All";
+selectAllTextSpan.style.fontWeight = "600";
+selectAllTextSpan.className = "my-text";
+select_all_div.appendChild(select_all_cb_span);
+select_all_div.appendChild(selectAllTextSpan);
+for(mark of marks){
+  add_to_filter_dialog(mark);
+ };
+
+ const filter_form = document.getElementById("filter_form");
+ select_all_checkbox.onclick = function() {
+  var shouldCheck;
+  if (select_all_checkbox.checked == true) {
+    shouldCheck = true;
+  }
+  else {
+    shouldCheck = false;
+  }
+  for (element of filter_form.elements) {
+      if (element.type == "checkbox") {
+        if (element.id != "selectall") {
+        element.checked = shouldCheck;
+      }
+    }
+  }
 };
 
 

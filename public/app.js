@@ -145,7 +145,9 @@ function setMark(element) {
     var new_marker = L.marker(currentPinCoords, { icon: dict[element] });
     new_marker.addTo(map).bindPopup(element);
     const type = element;
+    console.log(all_points_dict[type]);
     all_points_dict[type].push(new_marker);
+    console.log(all_points_dict[type]);
     if (!checked_marks.includes(type)){
       checked_marks.push(type);
     }
@@ -383,11 +385,12 @@ function filter_points(form_element) {
 }
 
 function rerender_map(){
-  console.log(checked_marks);
   for (var key of Object.keys(all_points_dict)){
-    console.log(all_points_dict[key]);
+    console.log(key);
     if (checked_marks.includes(key)){
-      for (marker in all_points_dict[key]){
+      for (index in all_points_dict[key]){
+        var marker = all_points_dict[key][index]; 
+        console.log(marker);
         if(map.hasLayer(marker)){
           continue;
         } else {
@@ -395,7 +398,9 @@ function rerender_map(){
         }
       }
     }else {
-      for (marker in all_points_dict[key]){
+      for (index in all_points_dict[key]){
+        var marker = all_points_dict[key][index]; 
+        console.log(marker);
         if(map.hasLayer(marker)){
           map.removeLayer(marker);
         } 

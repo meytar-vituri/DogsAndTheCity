@@ -36,7 +36,7 @@ html, body {
 
 /*/////////////////////////////////*/
 .mdl-dialog-my-content{
-  padding: 70px 0px 0px;
+  padding: 70px 0px 10px;
   position: relative;
   overflow: auto;
   /*padding: 5px;

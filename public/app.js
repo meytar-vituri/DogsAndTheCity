@@ -386,11 +386,9 @@ function filter_points(form_element) {
 
 function rerender_map(){
   for (var key of Object.keys(all_points_dict)){
-    console.log(key);
     if (checked_marks.includes(key)){
       for (index in all_points_dict[key]){
         var marker = all_points_dict[key][index]; 
-        console.log(marker);
         if(map.hasLayer(marker)){
           continue;
         } else {
@@ -400,14 +398,12 @@ function rerender_map(){
     }else {
       for (index in all_points_dict[key]){
         var marker = all_points_dict[key][index]; 
-        console.log(marker);
         if(map.hasLayer(marker)){
           map.removeLayer(marker);
         } 
       }
     }
   }
-  console.log("loop finished!");
   return;
 }
 

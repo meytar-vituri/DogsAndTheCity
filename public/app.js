@@ -332,7 +332,7 @@ function add_to_filter_dialog(mark) {
   //let div = document.createElement('div');
 
   //but.setAttribute("style", "background-color: rgb(255, 255, 255, 0); border: none;");
-  markDiv.setAttribute('class', 'mdl-cell mdl-cell--2-col-phone');
+  markDiv.setAttribute('class', 'mdl-cell mdl-cell--2-col-phone my-fancy-container button');
   //markDiv.className = "mdc-fab__ripple ";
   //but.appendChild(div);
 

@@ -240,6 +240,34 @@ function getRandomId() {
 
 
 
+const localStorage = window.localStorage;
+
+if (!(localStorage.hide)) {
+  document.getElementById('EnterModal').style.display = "block";
+  document.getElementById('back').style.display = "block";
+} else {
+  document.getElementById('EnterModal').style.display = "none";
+  document.getElementById('back').style.display = "none";
+}
+
+function yes() {
+  document.getElementById('EnterModal').style.display = "none";
+  document.getElementById('back').style.display = "none";
+}
+
+function no() {
+  localStorage.setItem('hide', true);
+  document.getElementById('EnterModal').style.display = "none";
+  document.getElementById('back').style.display = "none";
+}
+
+function closeEnter() {
+  document.getElementById('EnterModal').style.display = "none";
+  document.getElementById('back').style.display = "none";
+}
+
+
+
 const buttonGrid = document.getElementById("button-grid");
 const checkBoxGrid = document.getElementById("checkbox_grid");
 /*const dialog = document.getElementById("dialog")*;*/
@@ -332,7 +360,7 @@ function add_to_filter_dialog(mark) {
   //let div = document.createElement('div');
 
   //but.setAttribute("style", "background-color: rgb(255, 255, 255, 0); border: none;");
-  markDiv.setAttribute('class', 'mdl-cell mdl-cell--2-col-phone');
+  markDiv.setAttribute('class', 'mdl-cell mdl-cell--2-col-phone my-fancy-container button');
   //markDiv.className = "mdc-fab__ripple ";
   //but.appendChild(div);
 
@@ -506,6 +534,19 @@ var beach = elements[7];
 beach.onclick = function () { setMark("Dog's beach") };
 var Garbage = elements[8];
 Garbage.onclick = function () { setMark('Garbage area') };
+var Poisonous = elements[9];
+Poisonous.onclick = function () { setMark("Poisonous area") };
+
+var Crowded = elements[10];
+Crowded.onclick = function () { setMark("Crowded Area") };
+var Saki = elements[11];
+Saki.onclick = function () { setMark("Saki-Kaki") };
+var Water = elements[12];
+Water.onclick = function () { setMark("Water Area") };
+var Inspector = elements[13];
+Inspector.onclick = function () { setMark("Inspector") };
+var Shop = elements[14];
+Shop.onclick = function () { setMark("Pets Shop") };
 var Poisonous = elements[9];
 Poisonous.onclick = function () { setMark("Poisonous area") };
 

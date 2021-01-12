@@ -20,13 +20,13 @@ html, body {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  z-index: 1000;
+  z-index: 700;
 }
 #filter-pins-button {
   position: absolute;
   bottom: 80px;
   right: 10px;
-  z-index: 1000;
+  z-index: 700;
 }
 
 .button--active {
@@ -36,13 +36,12 @@ html, body {
 
 /*/////////////////////////////////*/
 .mdl-dialog-my-content{
-  padding: 70px 0px 0px;
+  padding: 70px 0px 10px;
   position: relative;
   overflow: auto;
   /*padding: 5px;
   overflow: auto;
   display: block;
-
   align-self: center;*/
 
 }
@@ -56,7 +55,15 @@ html, body {
   font-size: 180% ;
   text-align: center;
   font-weight: 200%;
-  padding: 15px 0px 0px;
+}
+
+.h3-text{
+  font-family: 'Assistant', sans-serif;
+  color: #ffffff;
+  font-size: 130%;
+  text-align: center;
+  padding: 15px;
+  margin: 0px;
 }
 
 .b{
@@ -68,7 +75,13 @@ html, body {
     color: #ffffff;
 }
 
-
+#back {
+   width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.432);
+  z-index: 800;
+}
 
 .fixed-title{
   padding: 0px 0px 20px;
@@ -83,6 +96,12 @@ html, body {
 
 }
 
+.titleEnter {
+  padding: 5px ;
+  display: block;
+  background-color: rgb(97, 32, 40);
+  z-index: 10;
+}
 
 /*this is for the add of the description of the icon*/
 .my-fancy-container {
@@ -156,7 +175,6 @@ html, body {
 
 
 /*
-
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     
   <div class="container">
@@ -164,15 +182,12 @@ html, body {
       <form action="tel:03-7247870"><button class="btn btn-lg btn-success col-xs-12 call-us"><span ></span>Contact TLV Municipality</button></form>
     </div>
   </div>
-
 .container {
   margin-top: 0px;
 }
-
 .call-us {
   float: right;
 }
-
 */
 
 
@@ -188,6 +203,64 @@ html, body {
 }
 
 
+#EnterModal {
+  border: 3px solid rgba(97, 32, 40, 0.507);
+  display: block; 
+  z-index: 1000; /* Sit on top */
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  overflow: auto;
+  padding: 5px;
+  width: 80%;
+  top: 10%;
+  box-shadow: 0 9px 46px 8px rgba(0,0,0,.14), 0 11px 15px -7px rgba(0,0,0,.12), 0 24px 38px 3px rgba(0,0,0,.2);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 5px 5px 5px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#yes {
+  font-family: 'Assistant', sans-serif;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+}
+
+#no{
+  font-family: 'Assistant', sans-serif;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+}
+
+#EnterText{
+  font-family: 'Assistant', sans-serif;
+}
+
+#EnterModalTop {
+  font-family: 'Assistant', sans-serif;
+  font-size: 14px;
+}
 
 body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }
 

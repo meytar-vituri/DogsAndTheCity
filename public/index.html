@@ -16,15 +16,44 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Assistant&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  
+
+  <div id='map'></div>  
   <div id= 'logo'>
    <img src= "logo.png" width="95" height="95">
   </div>
   
-  <div id='map'></div>
+<div id="back">
+  <div class = "container">
+    <div id = "EnterModal" class = "modal">
+      <div class="titleEnter">
+        <span>
+      <span class = "close" onclick="closeEnter()">&times;</span>
+       <p class="h3-text">
+           ברוכים הבאים ל <b>DOGS AND THE CITY</b></p>
+        </span>
+      </div>
+      <span>
+      <body dir = "rtl">
+        <div id="EnterText">
+          <br>
+        <p><b>על מנת להוסיף נקודה במפה</b> יש ללחוץ על ה + ואז על המיקום במפה בו תרצו להוסיף את הנקודה.
+          לאחר מכן תפתח חלונית, בה יש לבחור את סוג הנקודה אותה תרצו להוסיף.</p>
+        <p><b>אכפת לנו מהסביבה!</b><br> לכן החלטנו לעזור לעיריית תל אביב על מנת לשמור על העיר נקייה.
+          רוצים לעזור גם? הוסיפו נקודות למפה במקרה של צואה על המדרכה או כלב משוטט.</p>
+        <p><b>תרצו לראות חלונית זו גם בכניסה הבאה?</b></p>
+        <button id="yes" onclick="yes()">כן</button>
+        <button id="no" onclick="no()">לא תודה</button>
+        </div>
+      </body>
+      </span>
+    </div>
+  </div>
+</div>
 
 
   <button id="demo-menu-top-right" class="mdc-fab info_style ">
